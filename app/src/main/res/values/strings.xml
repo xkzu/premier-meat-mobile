@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">premier_meat</string>
+    <string name="textCuenta">Ya tienes una cuenta?</string>
+    <string name="textRrss">Visita nuerstras redes sociales</string>
+    <string name="textLogin">Login</string>
+    <string name="textRegister">Registrate</string>
+</resources>
