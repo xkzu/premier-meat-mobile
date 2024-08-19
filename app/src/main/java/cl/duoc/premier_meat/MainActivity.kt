@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         UserData.userList.add(adminUser())
+        addUsersToList()
 
         val loginButton: Button = findViewById(R.id.btnLogin)
         val registerButton: Button = findViewById(R.id.btnRegister)
@@ -42,6 +43,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun adminUser(): User {
         return User("admin@admin.com","admin","admin", true)
+    }
+
+    private fun addUsersToList() {
+        val user1 = User("juanita@duoc.cl", "Juanita", "1234", false)
+        val user2 = User("fernanda@duoc.cl", "Fernanda", "1234", false)
+        val user3 = User("emilio@duoc.cl", "Emilio", "1234", false)
+        val user4 = User("javier@duoc.cl", "Javier", "1234", false)
+        val user5 = User("fernando@duoc.cl", "Fernando", "1234", false)
+
+        UserData.userList.add(user1)
+        UserData.userList.add(user2)
+        UserData.userList.add(user3)
+        UserData.userList.add(user4)
+        UserData.userList.add(user5)
     }
 
     object UserData {

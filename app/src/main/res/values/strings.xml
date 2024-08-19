@@ -12,4 +12,6 @@
     <string name="textBtnRBack">Volver</string>
     <string name="textTitleRegister">Rellena tus datos para registrarte!</string>
     <string name="textLoginAccount">Ingresa tus datos para iniciar sesión</string>
+    <string name="textBtnListUsers">Listar usuarios</string>
+    <string name="textAllUsersRegistered">Usuarios encontrados</string>
 </resources>

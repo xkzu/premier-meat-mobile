@@ -56,9 +56,9 @@ class LoginActivity : AppCompatActivity() {
 
         if (user != null) {
             if (user.admin) {
-                goToAdminMenu()
+                goToAdminMenu(user)
             } else {
-                goToMenu()
+                goToMenu(user)
             }
         } else {
             Toast.makeText(this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show()
@@ -71,13 +71,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToAdminMenu() {
+    private fun goToAdminMenu(user: User) {
         val intent = Intent(this, AdminMenu::class.java)
+        intent.putExtra("user", user)
         startActivity(intent)
     }
 
-    private fun goToMenu() {
+    private fun goToMenu(user: User) {
         val intent = Intent(this, Menu::class.java)
+        intent.putExtra("user", user)
         startActivity(intent)
     }
 }
