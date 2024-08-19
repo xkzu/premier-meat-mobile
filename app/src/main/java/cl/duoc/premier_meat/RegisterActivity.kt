@@ -13,8 +13,6 @@ import cl.duoc.premier_meat.model.User
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val userList = mutableListOf<User>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,8 +22,6 @@ class RegisterActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        userList.add(adminUser())
 
         val registerButton: Button = findViewById(R.id.btnRegisterUser)
         val backButton: Button = findViewById(R.id.btnBack)
@@ -40,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (validatePassword(password, password2)) {
                     val newUser = User(email, name, password, false)
 
-                    userList.add(newUser)
+                    MainActivity.UserData.userList.add(newUser)
                     Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
                     cleanEditText()
                     goToLogin()
@@ -82,7 +78,4 @@ class RegisterActivity : AppCompatActivity() {
                 || password2 == ""
     }
 
-    private fun adminUser(): User {
-        return User("admin@admin.com","admin","admin", true)
-    }
 }

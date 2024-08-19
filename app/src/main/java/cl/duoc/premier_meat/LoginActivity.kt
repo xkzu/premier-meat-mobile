@@ -9,8 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cl.duoc.premier_meat.model.User
 
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
 
             if (!validateEditText(email, password)) {
-                TODO()// IMPLEMENTAR LOGIN
+                login(email, password)
             } else {
                 Toast.makeText(this, "Ingresa los campos antes de ingresar", Toast.LENGTH_SHORT).show()
             }
@@ -47,5 +49,35 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateEditText(email: String, password: String): Boolean {
         return email == "" || password == ""
+    }
+
+    private fun login(email: String, password: String) {
+        val user = finUser(email, password)
+
+        if (user != null) {
+            if (user.admin) {
+                goToAdminMenu()
+            } else {
+                goToMenu()
+            }
+        } else {
+            Toast.makeText(this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun finUser(email: String, password: String): User? {
+        return MainActivity.UserData.userList.find {
+            it.email == email && it.password == password
+        }
+    }
+
+    private fun goToAdminMenu() {
+        val intent = Intent(this, AdminMenu::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToMenu() {
+        val intent = Intent(this, Menu::class.java)
+        startActivity(intent)
     }
 }
