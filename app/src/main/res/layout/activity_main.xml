@@ -24,7 +24,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:id="@+id/logo"
                 app:srcCompat="@drawable/logo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +43,7 @@
                 android:textStyle="bold"
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="30dp" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <Button
                 android:id="@+id/btnLogin"

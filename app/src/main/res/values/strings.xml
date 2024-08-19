@@ -2,6 +2,14 @@
     <string name="app_name">premier_meat</string>
     <string name="textCuenta">Ya tienes una cuenta?</string>
     <string name="textRrss">Visita nuerstras redes sociales</string>
-    <string name="textLogin">Login</string>
+    <string name="textLogin">Ingresar</string>
     <string name="textRegister">Registrate</string>
+    <string name="textEmail">Ingresa Email</string>
+    <string name="textName">Ingresa Nombre</string>
+    <string name="textPassword">Ingresa Contraseña</string>
+    <string name="textPassword2">Repite la Contraseña</string>
+    <string name="textBtnRegistrarse">Registrarse</string>
+    <string name="textBtnRBack">Volver</string>
+    <string name="textTitleRegister">Rellena tus datos para registrarte!</string>
+    <string name="textLoginAccount">Ingresa tus datos para iniciar sesión</string>
 </resources>
