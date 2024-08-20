@@ -72,13 +72,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToAdminMenu(user: User) {
-        val intent = Intent(this, AdminMenu::class.java)
+        val intent = Intent(this, AdminMenuActivity::class.java)
         intent.putExtra("user", user)
         startActivity(intent)
     }
 
     private fun goToMenu(user: User) {
-        val intent = Intent(this, Menu::class.java)
+        val intent = Intent(this, MenuActivity::class.java)
         intent.putExtra("user", user)
         startActivity(intent)
     }
