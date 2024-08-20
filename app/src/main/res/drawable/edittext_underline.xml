@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fondo transparente -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Línea dorada inferior -->
+    <item android:top="50dp"> <!-- Ajusta este valor para mover la línea hacia abajo -->
+        <shape>
+            <solid android:color="@color/accent_gold"/>
+            <size android:height="2dp"/>
+        </shape>
+    </item>
+
+</layer-list>
