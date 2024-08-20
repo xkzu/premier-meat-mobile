@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class AllUsers : AppCompatActivity() {
+class AllUsersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,7 +42,7 @@ class AllUsers : AppCompatActivity() {
         listView.adapter = adapter
 
         backButton.setOnClickListener {
-            val intent = Intent(this, AdminMenu:: class.java)
+            val intent = Intent(this, AdminMenuActivity:: class.java)
             startActivity(intent)
         }
     }
