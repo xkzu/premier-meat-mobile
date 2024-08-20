@@ -1,16 +1,19 @@
 package cl.duoc.premier_meat
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import cl.duoc.premier_meat.model.User
 
-class AdminMenu : AppCompatActivity() {
+class AdminMenuActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,7 +53,7 @@ class AdminMenu : AppCompatActivity() {
     }
 
     private fun goToAllUsers() {
-        val intent = Intent(this, AllUsers::class.java)
+        val intent = Intent(this, AllUsersActivity::class.java)
         startActivity(intent)
     }
 
