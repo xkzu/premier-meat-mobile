@@ -14,4 +14,10 @@
     <string name="textLoginAccount">Ingresa tus datos para iniciar sesión</string>
     <string name="textBtnListUsers">Listar usuarios</string>
     <string name="textAllUsersRegistered">Usuarios encontrados</string>
+    <string name="textWelcomeUser">Bienvenido ${user.name}, que te gustaría hacer?</string>
+    <string name="textBtnChangePassword">Cambiar password</string>
+    <string name="textWlcomeChangePassword">Rellena los campos para cambiar la contraseña</string>
+    <string name="textEditChangePassword1">Ingresa tu password actual</string>
+    <string name="textEditChangePassword2">Ingresa tu nueva password</string>
+    <string name="textEditChangePassword3">Repite tu nueva password</string>
 </resources>
