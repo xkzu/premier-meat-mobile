@@ -23,26 +23,23 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.TextStyle
 
 @Composable
-fun LoginScreen(
-    onLoginClick: (String, String) -> Unit,
+fun PasswordChangeScreen(
+    onChangePasswordClick: (String, String, String) -> Unit,
     onBackClick: () -> Unit
 ) {
-    val emailState = remember { mutableStateOf("") }
-    val passwordState = remember { mutableStateOf("") }
+    val currentPasswordState = remember { mutableStateOf("") }
+    val newPasswordState = remember { mutableStateOf("") }
+    val confirmNewPasswordState = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 0.dp)
+        modifier = Modifier.fillMaxSize()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.background),
+            painter = painterResource(id = R.drawable.background),  // Asegúrate de que 'background' está correcto
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -55,59 +52,75 @@ fun LoginScreen(
                 .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.logo),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(300.dp)
-                    .padding(top = 0.dp)
-            )
-
             Text(
-                text = stringResource(id = R.string.textLoginAccount),
-                fontSize = 40.sp,
+                text = stringResource(id = R.string.textWlcomeChangePassword),
+                fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFFDAA520),
-                modifier = Modifier.padding(top = 10.dp),
+                modifier = Modifier.padding(top = 20.dp),
                 textAlign = TextAlign.Center
             )
 
             OutlinedTextField(
-                value = emailState.value,
-                onValueChange = { emailState.value = it },
+                value = currentPasswordState.value,
+                onValueChange = { currentPasswordState.value = it },
                 label = {
                     Text(
-                        text = stringResource(id = R.string.textEmail),
+                        text = stringResource(id = R.string.textEditChangePassword1),
                         color = Color(0xFFF5F5F5),
                         fontSize = 24.sp
                     )
                 },
-                textStyle = TextStyle(fontSize = 28.sp, color = Color.White), // Ajuste del tamaño del texto dentro del campo
+                visualTransformation = PasswordVisualTransformation(),
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth(0.95f)
                     .padding(vertical = 16.dp)
                     .height(80.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 colors = androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors(
                     backgroundColor = Color.Transparent,
                     focusedBorderColor = Color(0xFFDAA520),
                     unfocusedBorderColor = Color(0xFFF5F5F5),
                     textColor = Color.White
-                ),
-                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.None)
+                )
             )
 
             OutlinedTextField(
-                value = passwordState.value,
-                onValueChange = { passwordState.value = it },
+                value = newPasswordState.value,
+                onValueChange = { newPasswordState.value = it },
                 label = {
                     Text(
-                        text = stringResource(id = R.string.textPassword),
+                        text = stringResource(id = R.string.textEditChangePassword2),
                         color = Color(0xFFF5F5F5),
                         fontSize = 24.sp
                     )
                 },
-                textStyle = TextStyle(fontSize = 28.sp, color = Color.White), // Ajuste del tamaño del texto dentro del campo
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth(0.95f)
+                    .padding(vertical = 16.dp)
+                    .height(80.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                colors = androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors(
+                    backgroundColor = Color.Transparent,
+                    focusedBorderColor = Color(0xFFDAA520),
+                    unfocusedBorderColor = Color(0xFFF5F5F5),
+                    textColor = Color.White
+                )
+            )
+
+            OutlinedTextField(
+                value = confirmNewPasswordState.value,
+                onValueChange = { confirmNewPasswordState.value = it },
+                label = {
+                    Text(
+                        text = stringResource(id = R.string.textEditChangePassword3),
+                        color = Color(0xFFF5F5F5),
+                        fontSize = 24.sp
+                    )
+                },
                 visualTransformation = PasswordVisualTransformation(),
                 singleLine = true,
                 modifier = Modifier
@@ -124,20 +137,20 @@ fun LoginScreen(
             )
 
             Button(
-                onClick = { onLoginClick(emailState.value, passwordState.value) },
+                onClick = { onChangePasswordClick(currentPasswordState.value, newPasswordState.value, confirmNewPasswordState.value) },
                 modifier = Modifier
                     .fillMaxWidth(0.95f)
                     .padding(top = 30.dp)
-                    .height(80.dp),
+                    .height(70.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color(0xFF8B0000),
                     contentColor = Color.White
                 ),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
             ) {
                 Text(
-                    text = stringResource(id = R.string.textLogin),
-                    fontSize = 40.sp,
+                    text = stringResource(id = R.string.textBtnChangePassword),
+                    fontSize = 30.sp,
                     color = Color.White
                 )
             }
@@ -146,17 +159,17 @@ fun LoginScreen(
                 onClick = onBackClick,
                 modifier = Modifier
                     .fillMaxWidth(0.95f)
-                    .padding(top = 30.dp)
-                    .height(80.dp),
+                    .padding(top = 40.dp)
+                    .height(70.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color(0xFF8B0000),
                     contentColor = Color.White
                 ),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.textBtnRBack),
-                    fontSize = 40.sp,
+                    fontSize = 37.sp,
                     color = Color.White
                 )
             }

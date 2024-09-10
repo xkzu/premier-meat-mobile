@@ -30,7 +30,7 @@ fun MenuScreen(
     ) {
         // Imagen de fondo
         Image(
-            painter = painterResource(id = R.drawable.backgorund),
+            painter = painterResource(id = R.drawable.background),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
