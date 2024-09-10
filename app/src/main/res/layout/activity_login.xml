@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgorund"
+    android:background="@drawable/background"
     tools:context=".LoginActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgorund"
+        android:background="@drawable/background"
         tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout

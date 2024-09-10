@@ -8,6 +8,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -33,7 +34,8 @@ class AllUsersActivity : AppCompatActivity() {
             override fun getView(position: Int, convertView: android.view.View?, parent: android.view.ViewGroup): android.view.View {
                 val view = super.getView(position, convertView, parent)
                 val textView = view.findViewById<TextView>(android.R.id.text1)
-                textView.setTextColor(resources.getColor(R.color.accent_gold))
+
+                textView.setTextColor(ContextCompat.getColor(this@AllUsersActivity, R.color.accent_gold))
                 textView.textSize = 20F
                 return view
             }
@@ -42,9 +44,8 @@ class AllUsersActivity : AppCompatActivity() {
         listView.adapter = adapter
 
         backButton.setOnClickListener {
-            val intent = Intent(this, AdminMenuActivity:: class.java)
+            val intent = Intent(this, AdminMenuActivity::class.java)
             startActivity(intent)
         }
     }
-
 }
