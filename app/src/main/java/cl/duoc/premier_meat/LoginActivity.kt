@@ -1,61 +1,92 @@
 package cl.duoc.premier_meat
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import cl.duoc.premier_meat.model.User
+import androidx.compose.runtime.mutableStateOf
+import com.google.firebase.auth.FirebaseAuth
+import java.util.Locale
 
 class LoginActivity : ComponentActivity() {
+
+    private val VOICE_REQUEST_CODE = 100
+    private var campoActual = ""
+
+    private val emailState = mutableStateOf("")
+    private val passwordState = mutableStateOf("")
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Inicializamos Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
         setContent {
             LoginScreen(
-                onLoginClick = { email, password ->  // Pasar los parámetros email y password
-                    login(email, password)
+                onLoginClick = { email, password ->
+                    iniciarSesionConFirebase(email, password)
                 },
-                onBackClick = { goHome() }
+                onBackClick = { volver() },
+                onVoiceInputClick = { campo ->
+                    campoActual = campo
+                    iniciarReconocimientoDeVoz()
+                },
+                emailState = emailState,
+                passwordState = passwordState
             )
         }
     }
 
-    private fun goHome() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+    private fun iniciarReconocimientoDeVoz() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es")
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el $campoActual")
+        }
+
+        try {
+            startActivityForResult(intent, VOICE_REQUEST_CODE)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this, "Reconocimiento de voz no soportado", Toast.LENGTH_SHORT).show()
+        }
     }
 
-    private fun login(email: String, password: String) {
-        val user = findUser(email, password)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-        if (user != null) {
-            if (user.admin) {
-                goToAdminMenu(user)
-            } else {
-                goToMenu(user)
+        if (requestCode == VOICE_REQUEST_CODE && resultCode == RESULT_OK) {
+            val resultado = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            var textoHablado = resultado?.get(0)?.toLowerCase(Locale("es", "ES")) ?: ""
+
+            if (campoActual == "email") {
+                textoHablado = textoHablado.replace("arroba", "@").replace(" ", "")
+                emailState.value = textoHablado
+            } else if (campoActual == "contraseña") {
+                passwordState.value = textoHablado
             }
-        } else {
-            Toast.makeText(this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun findUser(email: String, password: String): User? {
-        return MainActivity.UserData.userList.find {
-            it.email == email && it.password == password
-        }
+    private fun iniciarSesionConFirebase(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this, MenuActivity::class.java)
+                    intent.putExtra("user_email", email)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Autenticación fallida: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
-    private fun goToAdminMenu(user: User) {
-        val intent = Intent(this, AdminMenuActivity::class.java)
-        intent.putExtra("user", user)
-        startActivity(intent)
-    }
-
-    private fun goToMenu(user: User) {
-        val intent = Intent(this, MenuActivity::class.java)
-        intent.putExtra("user", user)
+    private fun volver() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }
