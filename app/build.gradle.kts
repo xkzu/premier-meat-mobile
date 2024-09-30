@@ -64,6 +64,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-auth-ktx")
 
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("org.osmdroid:osmdroid-android:6.1.11")
+
+
 
 
     testImplementation(libs.junit)
