@@ -44,6 +44,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.2"
     }
+
+    packagingOptions {
+        resources {
+            excludes += "mockito-extensions/org.mockito.plugins.MockMaker"
+        }
+    }
 }
 
 dependencies {
@@ -58,17 +64,22 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
     implementation("androidx.activity:activity-compose:1.7.0")
 
-    // Dependencias de Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-auth-ktx")
 
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
-    implementation ("org.osmdroid:osmdroid-android:6.1.11")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
+    implementation("org.osmdroid:osmdroid-android:6.1.11")
 
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.0.0")
+    testImplementation("org.mockito:mockito-inline:4.0.0")
+    testImplementation("org.mockito:mockito-android:4.0.0")
 
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
