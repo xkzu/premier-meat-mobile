@@ -10,19 +10,20 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun MainScreen(
     onLoginClick: () -> Unit,
-    onRegisterClick: () -> Unit
+    onRegisterClick: () -> Unit,
+    onVoiceInputClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
 
@@ -94,6 +95,27 @@ fun MainScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.textRegister),
+                    fontSize = 37.sp,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            Button(
+                onClick = onVoiceInputClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, top = 20.dp)
+                    .height(70.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color(0xFF8B0000),
+                    contentColor = Color.White
+                ),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+            ) {
+                Text(
+                    text = "Usar Voz",
                     fontSize = 37.sp,
                     color = Color.White,
                     textAlign = TextAlign.Center,
