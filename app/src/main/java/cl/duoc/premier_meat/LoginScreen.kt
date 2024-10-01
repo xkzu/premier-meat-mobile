@@ -10,8 +10,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,10 +29,11 @@ import androidx.compose.ui.text.TextStyle
 @Composable
 fun LoginScreen(
     onLoginClick: (String, String) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onVoiceInputClick: (String) -> Unit,
+    emailState: MutableState<String>,
+    passwordState: MutableState<String>
 ) {
-    val emailState = remember { mutableStateOf("") }
-    val passwordState = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
 
     Box(
@@ -82,19 +82,31 @@ fun LoginScreen(
                         fontSize = 24.sp
                     )
                 },
-                textStyle = TextStyle(fontSize = 28.sp, color = Color.White), // Ajuste del tamaño del texto dentro del campo
+                textStyle = TextStyle(fontSize = 28.sp, color = Color.White),
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth(0.95f)
                     .padding(vertical = 16.dp)
                     .height(80.dp),
+                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.None),
                 colors = androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors(
                     backgroundColor = Color.Transparent,
                     focusedBorderColor = Color(0xFFDAA520),
                     unfocusedBorderColor = Color(0xFFF5F5F5),
                     textColor = Color.White
                 ),
-                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.None)
+                trailingIcon = {
+                    Button(
+                        onClick = { onVoiceInputClick("email") },
+                        modifier = Modifier.size(50.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color(0xFF8B0000),
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("🎤")
+                    }
+                }
             )
 
             OutlinedTextField(
@@ -107,7 +119,7 @@ fun LoginScreen(
                         fontSize = 24.sp
                     )
                 },
-                textStyle = TextStyle(fontSize = 28.sp, color = Color.White), // Ajuste del tamaño del texto dentro del campo
+                textStyle = TextStyle(fontSize = 28.sp, color = Color.White),
                 visualTransformation = PasswordVisualTransformation(),
                 singleLine = true,
                 modifier = Modifier
@@ -120,7 +132,19 @@ fun LoginScreen(
                     focusedBorderColor = Color(0xFFDAA520),
                     unfocusedBorderColor = Color(0xFFF5F5F5),
                     textColor = Color.White
-                )
+                ),
+                trailingIcon = {
+                    Button(
+                        onClick = { onVoiceInputClick("password") },
+                        modifier = Modifier.size(50.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color(0xFF8B0000),
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("🎤")
+                    }
+                }
             )
 
             Button(

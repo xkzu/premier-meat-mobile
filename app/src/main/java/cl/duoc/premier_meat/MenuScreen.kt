@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 fun MenuScreen(
     userName: String,
     onChangePasswordClick: () -> Unit,
+    onGeolocateClick: () -> Unit,
     onBackClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -28,7 +29,6 @@ fun MenuScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Imagen de fondo
         Image(
             painter = painterResource(id = R.drawable.background),
             contentDescription = null,
@@ -51,7 +51,6 @@ fun MenuScreen(
                 textAlign = TextAlign.Center
             )
 
-            // Botón Cambiar Contraseña
             Button(
                 onClick = onChangePasswordClick,
                 modifier = Modifier
@@ -71,7 +70,25 @@ fun MenuScreen(
                 )
             }
 
-            // Botón Volver
+            Button(
+                onClick = onGeolocateClick,
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .padding(top = 40.dp)
+                    .height(70.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color(0xFF8B0000),
+                    contentColor = Color.White
+                ),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+            ) {
+                Text(
+                    text = "Geolocalizar",
+                    fontSize = 30.sp,
+                    color = Color.White
+                )
+            }
+
             Button(
                 onClick = onBackClick,
                 modifier = Modifier

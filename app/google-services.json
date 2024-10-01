@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "74491608775",
+    "project_id": "premier-meat-mobile",
+    "storage_bucket": "premier-meat-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74491608775:android:8b4bcf88789b25efd848e2",
+        "android_client_info": {
+          "package_name": "cl.duoc.premier_meat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9CUK0LYDyXi5EdXVSP0sFq4yqwRfq6Fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
