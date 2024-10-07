@@ -1,40 +1,42 @@
 package cl.duoc.premier_meat
 
-//import android.content.Intent
-import androidx.test.ext.junit.runners.AndroidJUnit4
-//import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.auth.FirebaseUser
-//import org.junit.Rule
-//import org.junit.Test
+import android.content.Intent
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
+import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
+//import org.mockito.Mock
 //import org.mockito.Mockito.*
 //import org.mockito.MockitoAnnotations
-//import org.junit.Before
-//import org.mockito.Mock
-//import androidx.test.core.app.ApplicationProvider
-//import androidx.test.ext.junit.rules.ActivityScenarioRule
-//import com.google.android.gms.tasks.Task
-//import com.google.android.gms.tasks.Tasks
-//import org.junit.Assert.assertNotNull
-//import org.mockito.ArgumentMatchers.anyString
-//import org.mockito.Mockito.`when`
+//import org.robolectric.Robolectric
+//import org.robolectric.RobolectricTestRunner
+//import org.robolectric.annotation.Config
+import org.junit.Assert.*
 
-@RunWith(AndroidJUnit4::class)
+//@RunWith(RobolectricTestRunner::class)
+//@Config(sdk = [34])
 class LoginActivityTest {
 
-//    @get:Rule
-//    val activityRule = ActivityScenarioRule(LoginActivity::class.java)
-//
 //    @Mock
 //    private lateinit var mockFirebaseAuth: FirebaseAuth
 //
 //    @Mock
 //    private lateinit var mockFirebaseUser: FirebaseUser
 //
+//    private lateinit var loginActivity: LoginActivity
+//
 //    @Before
 //    fun setUp() {
 //        // Inicializamos los mocks
 //        MockitoAnnotations.openMocks(this)
+//
+//        // Creamos la actividad usando Robolectric
+//        loginActivity = Robolectric.buildActivity(LoginActivity::class.java).create().get()
+//        loginActivity.auth = mockFirebaseAuth
 //    }
 //
 //    @Test
@@ -44,23 +46,14 @@ class LoginActivityTest {
 //        `when`(mockFirebaseAuth.signInWithEmailAndPassword(anyString(), anyString())).thenReturn(mockTask)
 //        `when`(mockFirebaseAuth.currentUser).thenReturn(mockFirebaseUser)
 //
-//        // Iniciamos la actividad
-//        val intent = Intent(ApplicationProvider.getApplicationContext(), LoginActivity::class.java)
-//        val scenario = activityRule.scenario
+//        // Llama al método de inicio de sesión
+//        loginActivity.iniciarSesionConFirebase("test@example.com", "password123")
 //
-//        scenario.onActivity { activity ->
-//            // Simulamos el uso de FirebaseAuth mockeado
-//            activity.auth = mockFirebaseAuth
+//        // Verifica que el método de inicio de sesión fue llamado correctamente
+//        verify(mockFirebaseAuth).signInWithEmailAndPassword("test@example.com", "password123")
 //
-//            // Llamamos al método que estamos probando
-//            activity.iniciarSesionConFirebase("test@example.com", "password123")
-//
-//            // Verificamos que el método signInWithEmailAndPassword fue llamado correctamente
-//            verify(mockFirebaseAuth).signInWithEmailAndPassword("test@example.com", "password123")
-//
-//            // Verificamos que el usuario autenticado no sea nulo
-//            assertNotNull(mockFirebaseAuth.currentUser)
-//        }
+//        // Verifica que el usuario autenticado no sea nulo
+//        assertNotNull(mockFirebaseAuth.currentUser)
 //    }
 //
 //    @Test
@@ -70,22 +63,13 @@ class LoginActivityTest {
 //        `when`(mockFirebaseAuth.signInWithEmailAndPassword(anyString(), anyString())).thenReturn(mockTask)
 //        `when`(mockFirebaseAuth.currentUser).thenReturn(null)
 //
-//        // Iniciamos la actividad
-//        val intent = Intent(ApplicationProvider.getApplicationContext(), LoginActivity::class.java)
-//        val scenario = activityRule.scenario
+//        // Llama al método de inicio de sesión
+//        loginActivity.iniciarSesionConFirebase("wrong@example.com", "wrongpassword")
 //
-//        scenario.onActivity { activity ->
-//            // Simulamos el uso de FirebaseAuth mockeado
-//            activity.auth = mockFirebaseAuth
+//        // Verifica que el método de inicio de sesión fue llamado correctamente
+//        verify(mockFirebaseAuth).signInWithEmailAndPassword("wrong@example.com", "wrongpassword")
 //
-//            // Llamamos al método que estamos probando
-//            activity.iniciarSesionConFirebase("wrong@example.com", "wrongpassword")
-//
-//            // Verificamos que el método signInWithEmailAndPassword fue llamado correctamente
-//            verify(mockFirebaseAuth).signInWithEmailAndPassword("wrong@example.com", "wrongpassword")
-//
-//            // Verificamos que el usuario autenticado es nulo
-//            assert(mockFirebaseAuth.currentUser == null)
-//        }
+//        // Verifica que el usuario autenticado es nulo
+//        assertNull(mockFirebaseAuth.currentUser)
 //    }
 }
