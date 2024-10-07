@@ -59,28 +59,38 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    // Dependencias de Compose
     implementation("androidx.compose.ui:ui:1.5.0")
     implementation("androidx.compose.material:material:1.5.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
     implementation("androidx.activity:activity-compose:1.7.0")
 
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-auth-ktx")
 
+    // Google Play Services para localización
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
+    // Librería de mapas de OpenStreetMap
     implementation("org.osmdroid:osmdroid-android:6.1.11")
 
+    // Dependencias de JUnit y Mockito para pruebas unitarias
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:4.0.0")
     testImplementation("org.mockito:mockito-inline:4.0.0")
     testImplementation("org.mockito:mockito-android:4.0.0")
 
+    // Robolectric para pruebas unitarias de Android en JVM
+    testImplementation("org.robolectric:robolectric:4.7.3")
+
+    // AndroidX Testing para pruebas instrumentadas
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    // Dependencias estándar de pruebas unitarias y de integración
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
